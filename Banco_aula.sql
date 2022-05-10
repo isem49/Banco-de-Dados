@@ -8,6 +8,8 @@ CREATE TABLE Empresa (
     tipo VARCHAR(45)
 );
 
+drop table empresa;
+
 CREATE TABLE Departamento (
     idDepartamento INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome_Departamento VARCHAR(45) NOT NULL,
@@ -17,6 +19,8 @@ CREATE TABLE Departamento (
         REFERENCES Empresa (idEmpresa)
 );
 
+drop table departamento;
+
 CREATE TABLE Funcionario (
     idFuncionario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome_funcionario VARCHAR(45) NOT NULL,
@@ -25,11 +29,8 @@ CREATE TABLE Funcionario (
     CONSTRAINT fk_idDepartamento_funcionario FOREIGN KEY (id_departamento)
         REFERENCES departamento (iddepartamento),
     idendereco INT,
-    idtelefone INT,
     CONSTRAINT fk_endereco_funcionario FOREIGN KEY (idendereco)
-        REFERENCES endereco (idendereco),
-    CONSTRAINT fk_telefone_funcionario FOREIGN KEY (idtelefone)
-        REFERENCES telefone (idtelefone)
+        REFERENCES endereco (idendereco)
 );
 
 drop table funcionario;
@@ -37,8 +38,16 @@ drop table funcionario;
 CREATE TABLE telefone (
     idtelefone INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     numero VARCHAR(13) NOT NULL,
-    ddd VARCHAR(45)
+    ddd VARCHAR(45),
+    idFuncionario INT,
+    idCliente INT,
+    CONSTRAINT fk_Funcionario_Telefone FOREIGN KEY (idfuncionario)
+        REFERENCES funcionario (idFuncionario),
+    CONSTRAINT FK_Cliente_Telefone FOREIGN KEY (IdCliente)
+        REFERENCES cliente (idcliente)
 );
+
+drop table telefone;
 
 CREATE TABLE endereco (
     idendereco INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -46,26 +55,28 @@ CREATE TABLE endereco (
     numeroCasa VARCHAR(45)
 );
 
+drop table endereco;
+
 CREATE TABLE cliente (
     idcliente INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome_cliente VARCHAR(45) NOT NULL,
     cpf_cliente VARCHAR(11),
     idendereco INT,
-    idtelefone INT,
     CONSTRAINT fk_endereco_cliente FOREIGN KEY (idendereco)
-        REFERENCES endereco (idendereco),
-    CONSTRAINT fk_telefone_cliente FOREIGN KEY (idtelefone)
-        REFERENCES telefone (idtelefone)
+        REFERENCES endereco (idendereco)
 );
 
 drop table cliente;
 
 CREATE TABLE servico (
+
+
     idServico INT NOT NULL AUTO_INCREMENT KEY,
     nome_servico VARCHAR(45),
     recursos VARCHAR(200)
 );
 
+drop table servico;
 
 CREATE TABLE OS (
     idOS INT NOT NULL AUTO_INCREMENT KEY,
@@ -85,7 +96,13 @@ CREATE TABLE OS (
 
 drop table OS;
 
-CREATE TABLE itens_OS (
-    Servico_servico INT NOT NULL,
-    OS_IDOS INT NOT NULL
+CREATE TABLE Itens_OS (
+
+    idServico INT NOT NULL,
+    idOS INT NOT NULL,
+    CONSTRAINT fk_idServico_itens FOREIGN KEY (idservico)
+        REFERENCES servico (idservico),
+    CONSTRAINT fk_idos_itens FOREIGN KEY (idos)
+        REFERENCES os (idos)
 );
+
