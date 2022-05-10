@@ -8,6 +8,8 @@ CREATE TABLE Empresa (
     tipo VARCHAR(45)
 );
 
+create index IDX_idempresa on empresa(idEmpresa);
+
 drop table empresa;
 
 CREATE TABLE Departamento (
@@ -18,6 +20,8 @@ CREATE TABLE Departamento (
     CONSTRAINT fk_idEmpresa_departamento FOREIGN KEY (id_Empresa)
         REFERENCES Empresa (idEmpresa)
 );
+
+create index idx_idderpatamento on departamento(idDepartamento);
 
 drop table departamento;
 
@@ -33,6 +37,8 @@ CREATE TABLE Funcionario (
         REFERENCES endereco (idendereco)
 );
 
+create index idx_Idfuncionario on funcionario(idfuncionario);
+
 drop table funcionario;
 
 CREATE TABLE telefone (
@@ -47,6 +53,8 @@ CREATE TABLE telefone (
         REFERENCES cliente (idcliente)
 );
 
+create index idx_idtelefone on telefone(idtelefone);
+
 drop table telefone;
 
 CREATE TABLE endereco (
@@ -54,6 +62,8 @@ CREATE TABLE endereco (
     rua VARCHAR(45) NOT NULL,
     numeroCasa VARCHAR(45)
 );
+
+create index idx_idendereco on endereco(idendereco);
 
 drop table endereco;
 
@@ -66,15 +76,19 @@ CREATE TABLE cliente (
         REFERENCES endereco (idendereco)
 );
 
+alter table cliente add idade varchar(100);
+
+create index idx_idcliente on cliente(idcliente);
+
 drop table cliente;
 
 CREATE TABLE servico (
-
-
     idServico INT NOT NULL AUTO_INCREMENT KEY,
     nome_servico VARCHAR(45),
     recursos VARCHAR(200)
 );
+
+create index idx_idservico on servico(idservico);
 
 drop table servico;
 
@@ -94,15 +108,21 @@ CREATE TABLE OS (
         REFERENCES Cliente (idCliente)
 );
 
+create index idx_idos on os(idos);
+
 drop table OS;
 
 CREATE TABLE Itens_OS (
-
     idServico INT NOT NULL,
     idOS INT NOT NULL,
     CONSTRAINT fk_idServico_itens FOREIGN KEY (idservico)
         REFERENCES servico (idservico),
     CONSTRAINT fk_idos_itens FOREIGN KEY (idos)
-        REFERENCES os (idos)
+        REFERENCES os (idos),
+    PRIMARY KEY (IdServico , idOS)
 );
 
+create index idx_servico on ITENS_OS(IdServico);
+create index idx_os on ITENS_OS(IdOS);
+
+drop table itens_os;
