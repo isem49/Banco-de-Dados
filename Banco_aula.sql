@@ -108,9 +108,11 @@ CREATE TABLE OS (
         REFERENCES Cliente (idCliente)
 );
 
+
 create index idx_idos on os(idos);
 
 drop table OS;
+
 
 CREATE TABLE Itens_OS (
     idServico INT NOT NULL,
@@ -126,3 +128,54 @@ create index idx_servico on ITENS_OS(IdServico);
 create index idx_os on ITENS_OS(IdOS);
 
 drop table itens_os;
+
+-- Insert:
+
+insert into Empresa (nome_empresa, tipo) values ("IFBA","Não sei");
+
+insert into servico (nome_servico,recursos) values ("TESTE","Não sei");
+
+insert into endereco (rua, numerocasa) values ("rua sei lá","111");
+
+insert into endereco (rua, numerocasa) values ("rua sei222 lá","113331");
+
+select * from endereco;
+
+SELECT 
+    *
+FROM
+    empresa;
+
+insert into departamento (nome_Departamento,descricao_departamento,id_empresa) values ("teste","dsadsadssdasdds","1");
+
+SELECT 
+    *
+FROM
+    departamento;
+
+insert into cliente (nome_cliente,cpf_cliente,idendereco,idade) values ("ricardo","2332313","1",19);
+
+SELECT 
+    *
+FROM
+    cliente;
+
+insert into funcionario (nome_funcionario,cpf_funcionario,id_departamento,idendereco) values ("farias","1323123213","1","2")
+
+insert into os (datasolicitacao,dataprevisao,respostas,id_funcionario,id_departamento,id_cliente) values (20/5,21/5,"sdsadads",1,1,1);
+
+SELECT 
+    *
+FROM
+    os;
+
+insert into itens_os (idservico,idos) values (1,1);
+
+insert into telefone (numero,ddd,idfuncionario) values (323123321,55,1);
+
+SELECT 
+    *
+FROM
+    telefone;
+
+insert into telefone (numero,ddd,idcliente) values (323123321,55,1);
