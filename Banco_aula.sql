@@ -156,7 +156,7 @@ SELECT
 FROM
     departamento;
 
-insert into cliente (nome_cliente,cpf_cliente,idendereco,idade) values ("ricardo","2332313","1",19);
+insert into cliente (nome_cliente,cpf_cliente,idendereco,idade) values ("teste","2332313","1",19);
 
 SELECT 
     *
@@ -186,11 +186,30 @@ SELECT
 FROM
     telefone;
 
-insert into telefone (numero,ddd,idcliente) values (323123321,55,1);
+insert into telefone (numero,ddd,idcliente) values (32333321,55,3);
 
-update cliente set nome_Cliente = "teste" where idCliente = 2;
+UPDATE cliente 
+SET 
+    nome_Cliente = "teste"
+WHERE
+    idCliente = 3;
 
-select * from cliente;
+SELECT 
+    *
+FROM
+    cliente;
 
-delete from cliente where idcliente = 2;
+DELETE FROM cliente 
+WHERE
+    idcliente = 2;
+
+SELECT 
+    c.nome_cliente, c.cpf_cliente, t.numero, e.rua
+FROM
+    cliente c,
+    telefone t,
+    endereco e
+WHERE
+    c.idcliente = t.idcliente
+        AND c.idendereco = e.idendereco;
        
