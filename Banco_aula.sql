@@ -1,17 +1,15 @@
-use oficina;
+-- Criar e usar DATABASE
 
 create database oficina;
+use oficina;
+
+-- Criar tabelas:
 
 CREATE TABLE Empresa (
     idEmpresa INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome_empresa VARCHAR(120) NOT NULL,
     tipo VARCHAR(45)
 );
-
-create index IDX_idempresa on empresa(idEmpresa);
-
-drop table empresa;
-
 CREATE TABLE Departamento (
     idDepartamento INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome_Departamento VARCHAR(45) NOT NULL,
@@ -20,11 +18,6 @@ CREATE TABLE Departamento (
     CONSTRAINT fk_idEmpresa_departamento FOREIGN KEY (id_Empresa)
         REFERENCES Empresa (idEmpresa)
 );
-
-create index idx_idderpatamento on departamento(idDepartamento);
-
-drop table departamento;
-
 CREATE TABLE Funcionario (
     idFuncionario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome_funcionario VARCHAR(45) NOT NULL,
@@ -36,11 +29,6 @@ CREATE TABLE Funcionario (
     CONSTRAINT fk_endereco_funcionario FOREIGN KEY (idendereco)
         REFERENCES endereco (idendereco)
 );
-
-create index idx_Idfuncionario on funcionario(idfuncionario);
-
-drop table funcionario;
-
 CREATE TABLE telefone (
     idtelefone INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     numero VARCHAR(13) NOT NULL,
@@ -52,21 +40,11 @@ CREATE TABLE telefone (
     CONSTRAINT FK_Cliente_Telefone FOREIGN KEY (IdCliente)
         REFERENCES cliente (idcliente)
 );
-
-create index idx_idtelefone on telefone(idtelefone);
-
-drop table telefone;
-
 CREATE TABLE endereco (
     idendereco INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     rua VARCHAR(45) NOT NULL,
     numeroCasa VARCHAR(45)
 );
-
-create index idx_idendereco on endereco(idendereco);
-
-drop table endereco;
-
 CREATE TABLE cliente (
     idcliente INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome_cliente VARCHAR(45) NOT NULL,
@@ -75,23 +53,11 @@ CREATE TABLE cliente (
     CONSTRAINT fk_endereco_cliente FOREIGN KEY (idendereco)
         REFERENCES endereco (idendereco)
 );
-
-alter table cliente add idade varchar(100);
-
-create index idx_idcliente on cliente(idcliente);
-
-drop table cliente;
-
 CREATE TABLE servico (
     idServico INT NOT NULL AUTO_INCREMENT KEY,
     nome_servico VARCHAR(45),
     recursos VARCHAR(200)
 );
-
-create index idx_idservico on servico(idservico);
-
-drop table servico;
-
 CREATE TABLE OS (
     idOS INT NOT NULL AUTO_INCREMENT KEY,
     datasolicitacao VARCHAR(10),
@@ -107,13 +73,6 @@ CREATE TABLE OS (
     CONSTRAINT fk_cliente_OS FOREIGN KEY (id_cliente)
         REFERENCES Cliente (idCliente)
 );
-
-
-create index idx_idos on os(idos);
-
-drop table OS;
-
-
 CREATE TABLE Itens_OS (
     idServico INT NOT NULL,
     idOS INT NOT NULL,
@@ -124,92 +83,63 @@ CREATE TABLE Itens_OS (
     PRIMARY KEY (IdServico , idOS)
 );
 
+-- Criar index:
+
 create index idx_servico on ITENS_OS(IdServico);
 create index idx_os on ITENS_OS(IdOS);
+create index idx_idos on os(idos);
+create index idx_idservico on servico(idservico);
+create index idx_idcliente on cliente(idcliente);
+create index idx_idtelefone on telefone(idtelefone);
+create index idx_idderpatamento on departamento(idDepartamento);
+create index idx_Idfuncionario on funcionario(idfuncionario);
+create index idx_idendereco on endereco(idendereco);
+create index IDX_idempresa on empresa(idEmpresa);
 
+-- dropar uma tabela:
+
+drop table OS;
+drop table servico;
+drop table cliente;
+drop table empresa;
+drop table departamento;
+drop table funcionario;
+drop table telefone;
+drop table endereco;
 drop table itens_os;
 
--- Insert:
+-- Insert: 
 
 insert into Empresa (nome_empresa, tipo) values ("IFBA","Não sei");
-
 insert into servico (nome_servico,recursos) values ("TESTE","Não sei");
-
 insert into endereco (rua, numerocasa) values ("rua sei lá","111");
-
 insert into endereco (rua, numerocasa) values ("rua sei222 lá","113331");
-
-SELECT 
-    *
-FROM
-    endereco;
-
-SELECT 
-    *
-FROM
-    empresa;
-
 insert into departamento (nome_Departamento,descricao_departamento,id_empresa) values ("teste","dsadsadssdasdds","1");
-
-SELECT 
-    *
-FROM
-    departamento;
-
 insert into cliente (nome_cliente,cpf_cliente,idendereco,idade) values ("teste","2332313","1",19);
-
-SELECT 
-    *
-FROM
-    cliente;
-
 insert into funcionario (nome_funcionario,cpf_funcionario,id_departamento,idendereco) values ("farias","1323123213","1","2");
-
-SELECT 
-    *
-FROM
-    funcionario;
-
-insert into os (datasolicitacao,dataprevisao,respostas,id_funcionario,id_departamento,id_cliente) values (20/5,21/5,"sdsadads",1,1,1);
-
-SELECT 
-    *
-FROM
-    os;
-
+insert into telefone (numero,ddd,idcliente) values (32333321,55,3);
 insert into itens_os (idservico,idos) values (1,1);
-
+insert into os (datasolicitacao,dataprevisao,respostas,id_funcionario,id_departamento,id_cliente) values (20/5,21/5,"sdsadads",1,1,1);
 insert into telefone (numero,ddd,idfuncionario) values (323123321,55,1);
 
-SELECT 
-    *
-FROM
-    telefone;
+-- alterar tabela:
 
-insert into telefone (numero,ddd,idcliente) values (32333321,55,3);
+alter table cliente add idade varchar(100);
 
-UPDATE cliente 
-SET 
-    nome_Cliente = "teste"
-WHERE
-    idCliente = 3;
+-- Selecionar uma tabela:
 
-SELECT 
-    *
-FROM
-    cliente;
+SELECT * FROM endereco;
+SELECT * FROM empresa;
+SELECT * FROM departamento;
+SELECT * FROM cliente; 
+SELECT * FROM funcionario;
+SELECT * FROM os;
+SELECT * FROM telefone;
+SELECT c.nome_cliente, c.cpf_cliente, t.numero, e.rua FROM cliente c, telefone t, endereco e WHERE c.idcliente = t.idcliente AND c.idendereco = e.idendereco;
 
-DELETE FROM cliente 
-WHERE
-    idcliente = 2;
+-- Modificar atributos de uma tablea
 
-SELECT 
-    c.nome_cliente, c.cpf_cliente, t.numero, e.rua
-FROM
-    cliente c,
-    telefone t,
-    endereco e
-WHERE
-    c.idcliente = t.idcliente
-        AND c.idendereco = e.idendereco;
+UPDATE cliente  SET nome_Cliente = "teste" WHERE idCliente = 3;
+DELETE FROM cliente WHERE idcliente = 2;
+
        
