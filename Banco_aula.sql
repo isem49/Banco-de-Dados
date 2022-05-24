@@ -139,7 +139,10 @@ insert into endereco (rua, numerocasa) values ("rua sei lá","111");
 
 insert into endereco (rua, numerocasa) values ("rua sei222 lá","113331");
 
-select * from endereco;
+SELECT 
+    *
+FROM
+    endereco;
 
 SELECT 
     *
@@ -160,7 +163,12 @@ SELECT
 FROM
     cliente;
 
-insert into funcionario (nome_funcionario,cpf_funcionario,id_departamento,idendereco) values ("farias","1323123213","1","2")
+insert into funcionario (nome_funcionario,cpf_funcionario,id_departamento,idendereco) values ("farias","1323123213","1","2");
+
+SELECT 
+    *
+FROM
+    funcionario;
 
 insert into os (datasolicitacao,dataprevisao,respostas,id_funcionario,id_departamento,id_cliente) values (20/5,21/5,"sdsadads",1,1,1);
 
@@ -179,3 +187,10 @@ FROM
     telefone;
 
 insert into telefone (numero,ddd,idcliente) values (323123321,55,1);
+
+update cliente set nome_Cliente = "teste" where idCliente = 2;
+
+select * from cliente;
+
+delete from cliente where idcliente = 2;
+       
