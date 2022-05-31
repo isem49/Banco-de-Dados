@@ -96,7 +96,7 @@ create index idx_Idfuncionario on funcionario(idfuncionario);
 create index idx_idendereco on endereco(idendereco);
 create index IDX_idempresa on empresa(idEmpresa);
 
--- dropar uma tabela:
+-- Dropar uma tabela:
 
 drop table OS;
 drop table servico;
@@ -119,15 +119,86 @@ insert into cliente (nome_cliente,cpf_cliente,idendereco,idade) values ("teste",
 insert into funcionario (nome_funcionario,cpf_funcionario,id_departamento,idendereco) values ("farias","1323123213","1","2");
 insert into telefone (numero,ddd,idcliente) values (32333321,55,3);
 insert into itens_os (idservico,idos) values (1,1);
+insert into itens_os (idservico,idos) values (2,2);
+insert into itens_os (idservico,idos) values (3,3);
 insert into os (datasolicitacao,dataprevisao,respostas,id_funcionario,id_departamento,id_cliente) values (20/5,21/5,"sdsadads",1,1,1);
+insert into os (datasolicitacao,dataprevisao,respostas,id_funcionario,id_departamento,id_cliente) values (20/6,21/6,"sdsaddsdasads",2,2,2);
+insert into os (datasolicitacao,dataprevisao,respostas,id_funcionario,id_departamento,id_cliente) values (20/7,21/7,"sdsadads",3,3,3);
+insert into os (datasolicitacao,dataprevisao,respostas,id_funcionario,id_departamento,id_cliente) values (22/3,2/1,"sdsadads",4,1,1);
 insert into telefone (numero,ddd,idfuncionario) values (323123321,55,1);
+insert into servico (nome_servico,recursos) values ("TESTE2","Não sei");
+insert into servico (nome_servico,recursos) values ("TESTE3","Não sei");
+insert into funcionario (nome_funcionario,cpf_funcionario,id_departamento,idendereco) values ("ricardo","1323123213","1","2");
+insert into funcionario (nome_funcionario,cpf_funcionario,id_departamento,idendereco) values ("teste","1323123213","1","2");
+INSERT INTO departamento (nome_Departamento,descricao_Departamento,id_empresa)
+VALUES
+  ("Vestibulum ut","sit amet ante. Vivamus non lorem",1),
+  ("aliquam eros","lectus ante dictum mi, ac",1),
+  ("ac arcu.","tempus non, lacinia at, iaculis quis, pede. Praesent",1),
+  ("egestas, urna","pellentesque a, facilisis non, bibendum",1),
+  ("Phasellus nulla.","Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse non leo.",1),
+  ("ultricies ornare,","tincidunt aliquam arcu. Aliquam ultrices iaculis odio. Nam interdum",1),
+  ("fermentum convallis","vulputate, posuere vulputate, lacus. Cras interdum. Nunc",1),
+  ("Duis ac","Vivamus molestie dapibus ligula. Aliquam erat",1),
+  ("aliquam adipiscing","aliquam iaculis, lacus pede",1),
+  ("nec tempus","massa. Vestibulum accumsan neque et nunc.",1);
+INSERT INTO endereco (rua,numeroCasa,idendereco)
+VALUES
+  ("consectetuer adipiscing","tellus. Suspendisse sed dolor.",4),
+  ("Fusce dolor","hendrerit a, arcu. Sed et libero. Proin mi. Aliquam",8),
+  ("nibh sit","sem. Pellentesque ut ipsum ac mi eleifend",5),
+  ("odio, auctor","nibh. Quisque nonummy ipsum non arcu. Vivamus",9),
+  ("fermentum arcu.","amet diam eu dolor egestas rhoncus. Proin nisl",6),
+  ("hendrerit consectetuer,","Curae Donec tincidunt. Donec vitae",7),
+  ("Aliquam erat","est arcu ac orci. Ut semper pretium neque. Morbi",3);
+INSERT INTO funcionario (nome_funcionario,cpf_funcionario,id_departamento,idendereco,idfuncionario)
+VALUES
+  ("ac nulla.","Donec tempus, lorem fringilla ornare placerat, orci lacus vestibulum",3,9,2),
+  ("tempus risus.","Sed nec metus",3,3,3),
+  ("nunc sed","rutrum, justo. Praesent luctus. Curabitur egestas nunc",11,7,5),
+  ("commodo ipsum.","pellentesque eget, dictum placerat, augue.",4,3,6),
+  ("odio. Phasellus","adipiscing elit. Aliquam auctor,",10,6,7),
+  ("urna. Nunc","vitae, orci. Phasellus dapibus quam quis diam.",2,4,8),
+  ("pharetra. Nam","mauris. Suspendisse aliquet molestie tellus. Aenean",10,7,9),
+  ("ligula. Aliquam","sodales nisi magna",8,4,10),
+  ("enim. Sed","turpis egestas. Fusce",10,4,11),
+  ("blandit at,","orci. Donec nibh. Quisque nonummy ipsum non arcu. Vivamus",10,5,12);
+INSERT INTO cliente (nome_cliente,cpf_cliente,idade,idendereco,idcliente)
+VALUES
+  ("ac, feugiat","tellus eu augue porttitor","lobortis, nisi nibh lacinia orci, consectetuer euismod est",3,2),
+  ("enim. Nunc","ligula eu enim. Etiam imperdiet dictum magna. Ut tincidunt orci","vitae sodales nisi magna sed dui.",4,4),
+  ("porttitor vulputate,","urna et arcu imperdiet ullamcorper. Duis at","Etiam vestibulum massa rutrum magna. Cras convallis",9,5),
+  ("eget nisi","Mauris molestie pharetra nibh. Aliquam ornare, libero","quam. Pellentesque habitant morbi tristique senectus",9,6),
+  ("sociis natoque","erat volutpat. Nulla","Nullam feugiat placerat velit. Quisque varius. Nam porttitor",5,7),
+  ("lectus, a","sem magna nec quam. Curabitur vel lectus. Cum sociis","scelerisque dui. Suspendisse ac",8,8),
+  ("lorem, luctus","dolor. Fusce mi lorem,","dolor elit, pellentesque a, facilisis non, bibendum sed, est.",4,9),
+  ("Ut semper","lectus ante dictum mi, ac mattis velit","In lorem. Donec elementum, lorem ut aliquam",8,10),
+  ("est ac","parturient montes, nascetur ridiculus mus. Proin","at auctor ullamcorper, nisl arcu iaculis",3,11),
+  ("Vivamus sit","Morbi vehicula. Pellentesque tincidunt tempus risus. Donec","Proin dolor. Nulla semper tellus id nunc interdum feugiat.",7,12);
+INSERT INTO Cliente (respostas,dataprevisao,datasolicitacao,idos,id_funcionario,id_cliente,id_departamento)
+VALUES
+  ("malesuada fames ac turpis egestas. Fusce","vestibulum massa rutrum magna. Cras",6,11,10,2,2),
+  ("pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam","Quisque tincidunt",9,5,8,3,3),
+  ("diam. Proin dolor. Nulla semper tellus id nunc","tempor augue ac ipsum. Phasellus vitae",4,4,3,5,4),
+  ("ornare, libero at auctor ullamcorper, nisl arcu iaculis enim, sit","quam. Pellentesque habitant morbi tristique senectus",4,10,9,5,5),
+  ("dui, nec tempus mauris erat eget ipsum. Suspendisse","ligula eu enim. Etiam imperdiet dictum",6,7,6,6,6),
+  ("mi, ac mattis velit justo","egestas blandit. Nam nulla",6,4,7,7,7),
+  ("leo, in lobortis tellus justo sit amet nulla. Donec non","sem semper erat,",2,2,4,8,8),
+  ("odio semper cursus. Integer mollis. Integer","tristique pharetra.",1,5,7,9,8),
+  ("dis parturient montes, nascetur ridiculus mus. Aenean eget magna. Suspendisse","non enim. Mauris quis turpis vitae purus gravida sagittis.",6,8,10,4,9),
+  ("Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus nibh dolor,","sed, sapien. Nunc",10,9,10,10);
 
--- alterar tabela:
+  
+  
+  
+-- Alterar tabela:
 
 alter table cliente add idade varchar(100);
 
 -- Selecionar uma tabela:
 
+SELECT * FROM itens_os;
+SELECT * FROM SERVICO;
 SELECT * FROM endereco;
 SELECT * FROM empresa;
 SELECT * FROM departamento;
@@ -136,10 +207,16 @@ SELECT * FROM funcionario;
 SELECT * FROM os;
 SELECT * FROM telefone;
 SELECT c.nome_cliente, c.cpf_cliente, t.numero, e.rua FROM cliente c, telefone t, endereco e WHERE c.idcliente = t.idcliente AND c.idendereco = e.idendereco;
-
+SELECT * FROM os, CLIENTE;
+SELECT f.nome_funcionario, s.nome_servico FROM funcionario f, servico s, os os , itens_os i  where 
+	f.idfuncionario = os.id_funcionario and
+    s.idservico =	i.idservico and
+    os.idos = i.idos;
+    
 -- Modificar atributos de uma tablea
 
 UPDATE cliente  SET nome_Cliente = "teste" WHERE idCliente = 3;
 DELETE FROM cliente WHERE idcliente = 2;
+DELETE FROM funcionario WHERE idfuncionario = 4;
 
        
