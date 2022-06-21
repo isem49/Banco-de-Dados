@@ -175,22 +175,43 @@ VALUES
   ("Ut semper","lectus ante dictum mi, ac mattis velit","In lorem. Donec elementum, lorem ut aliquam",8,10),
   ("est ac","parturient montes, nascetur ridiculus mus. Proin","at auctor ullamcorper, nisl arcu iaculis",3,11),
   ("Vivamus sit","Morbi vehicula. Pellentesque tincidunt tempus risus. Donec","Proin dolor. Nulla semper tellus id nunc interdum feugiat.",7,12);
-INSERT INTO Cliente (respostas,dataprevisao,datasolicitacao,idos,id_funcionario,id_cliente,id_departamento)
-VALUES
-  ("malesuada fames ac turpis egestas. Fusce","vestibulum massa rutrum magna. Cras",6,11,10,2,2),
-  ("pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam","Quisque tincidunt",9,5,8,3,3),
-  ("diam. Proin dolor. Nulla semper tellus id nunc","tempor augue ac ipsum. Phasellus vitae",4,4,3,5,4),
-  ("ornare, libero at auctor ullamcorper, nisl arcu iaculis enim, sit","quam. Pellentesque habitant morbi tristique senectus",4,10,9,5,5),
-  ("dui, nec tempus mauris erat eget ipsum. Suspendisse","ligula eu enim. Etiam imperdiet dictum",6,7,6,6,6),
-  ("mi, ac mattis velit justo","egestas blandit. Nam nulla",6,4,7,7,7),
-  ("leo, in lobortis tellus justo sit amet nulla. Donec non","sem semper erat,",2,2,4,8,8),
-  ("odio semper cursus. Integer mollis. Integer","tristique pharetra.",1,5,7,9,8),
-  ("dis parturient montes, nascetur ridiculus mus. Aenean eget magna. Suspendisse","non enim. Mauris quis turpis vitae purus gravida sagittis.",6,8,10,4,9),
-  ("Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus nibh dolor,","sed, sapien. Nunc",10,9,10,10);
+INSERT INTO os (dataSolicitacao,dataPrevisao,respostas,id_Funcionario,id_Departamento,id_Cliente)
+	VALUES
+		("8810602","5267141","accan",11,3,7),
+		("5692563","5508452","ullcorper. Duis",9,2,3),
+		("5458850","5486447","vaus",3,4,6),
+		("7811506","1557365","ante",4,4,4),
+		("5366658","2420844","Proin eget odio.",8,8,3),
+		("6981392","4515169","interdum ligula",9,9,4),
+		("7552328","5361334","aliquam arcu.",23,3,11),
+		("4202783","8652123","felis.",3,1,5),
+		("3328810","7483937","faucibus ut,",6,5,3),
+		("4852322","6701426","nisl. Quisque",4,10,3);
+INSERT INTO Servico (nome_Servico,recursos)
+	VALUES
+		("dolor","sed"),
+		("hendrerit.","posuere"),
+		("arcu.","augue ac"),
+		("nulla","lectus convallis est,"),
+		("sollicitudin","eu neque"),
+		("blandit","mi"),
+		("mollis","per conubia nostra,"),
+		("ligula","ullamcorper eu,"),
+		("Integer","Ut sagittis"),
+		("ac,","porttitor");
+INSERT INTO itens_OS (idServico,idOS)
+	VALUES
+		(2,45),
+		(3,46),
+		(4,47),
+		(5,48),
+		(6,49),
+		(7,50),
+		(8,51),
+		(9,52),
+		(10,53),
+		(11,54);
 
-  
-  
-  
 -- Alterar tabela:
 
 alter table cliente add idade varchar(100);
