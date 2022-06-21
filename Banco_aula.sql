@@ -240,4 +240,46 @@ UPDATE cliente  SET nome_Cliente = "teste" WHERE idCliente = 3;
 DELETE FROM cliente WHERE idcliente = 2;
 DELETE FROM funcionario WHERE idfuncionario = 4;
 
-       
+-- Select Join:
+
+-- Listar os serviços realizados por um determinado departamento:
+
+SELECT 
+    d.idDepartamento, d.nome_Departamento, s.nome_Servico
+FROM
+    servico s
+        INNER JOIN
+    Itens_OS i ON i.idServico = s.idServico
+        INNER JOIN
+    OS os ON i.idOS = os.idOS
+        INNER JOIN
+    Departamento d ON d.idDepartamento = os.id_Departamento;
+    
+-- Listar os funcionários que já realizaram algum tipo de serviço:
+
+SELECT 
+   f.nome_Funcionario, f.idFuncionario,  s.nome_Servico
+FROM
+    servico s
+        INNER JOIN
+    Itens_OS i ON i.idServico = s.idServico
+        INNER JOIN
+    OS os ON i.idOS = os.idOS
+        INNER JOIN
+    Funcionario f ON f.idFuncionario = os.id_Funcionario;
+     
+-- Saber quais clientes já realizaram determinado serviço:
+
+SELECT 
+   s.nome_Servico, c.idCliente, c.nome_Cliente
+FROM
+    servico s
+        INNER JOIN
+    Itens_OS i ON i.idServico = s.idServico
+        INNER JOIN
+    OS os ON i.idOS = os.idOS
+        INNER JOIN
+    Cliente c ON c.idCliente = os.id_Cliente;
+
+
+
