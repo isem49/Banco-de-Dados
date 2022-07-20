@@ -282,4 +282,31 @@ FROM
     Cliente c ON c.idCliente = os.id_Cliente;
 
 
+SELECT 
+    MAX(idfuncionario)
+FROM
+    funcionario;
+
+
+SELECT 
+    min(idfuncionario)
+FROM
+    funcionario;
+
+SELECT 
+    COUNT(Idcliente)
+FROM
+    cliente;
+    
+SELECT 
+    AVG(idfuncionario)
+FROM
+    funcionario;
+
+SELECT 
+    id_funcionario, COUNT(*)
+FROM
+    OS
+GROUP BY
+	IDOS;
 
